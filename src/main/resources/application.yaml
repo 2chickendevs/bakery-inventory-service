@@ -1,0 +1,4 @@
+server:
+  servlet:
+    context-path: /bakery-inventory-service/api
+  port: 8082
