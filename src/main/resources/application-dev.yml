@@ -3,12 +3,24 @@ server:
     context-path: /bakery-inventory-service/api
   port: 8082
 
+db:
+  host: localhost
+  port: 5433
+  name: bakery-inventory-db
+  username: admin
+  password: admin
+
 feign:
   client:
     config:
       default:
         connectTimeout: 5000
         readTimeout: 5000
+
+app:
+  clients:
+    bakery-user-service:
+      url: http://localhost:8081/bakery-user-service/api
 
 spring:
   datasource:
@@ -38,3 +50,16 @@ flyway:
   url: jdbc:postgresql://${db.host}:${db.port}/${db.name}
   userEntity: ${db.username}
   password: ${db.password}
+
+# APPLICATION
+allowed:
+  urls: http://localhost:3000
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        orm:
+          jdbc:
+            bind: trace

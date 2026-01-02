@@ -10,6 +10,18 @@ feign:
         connectTimeout: 5000
         readTimeout: 5000
 
+db:
+  host: ${DB_HOST}
+  port: ${DB_PORT:5433}
+  name: ${DB_NAME}
+  username: ${DB_USERNAME}
+  password: ${DB_PASSWORD}
+
+app:
+  clients:
+    bakery-user-service:
+      url: ${BAKERY_USER_SERVICE_URL}
+
 spring:
   datasource:
     url: jdbc:postgresql://${db.host}:${db.port}/${db.name}
@@ -38,3 +50,6 @@ flyway:
   url: jdbc:postgresql://${db.host}:${db.port}/${db.name}
   userEntity: ${db.username}
   password: ${db.password}
+
+allowed:
+  urls: ${ALLOWED_ORIGIN:https://your-frontend-domain.com}
